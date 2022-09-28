@@ -1,4 +1,4 @@
-package B_info;
+package B_info3;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
@@ -26,9 +25,6 @@ public class InfoView {
 	JTextField tfName,tfID,tfTel,tfSex,tfAge,tfHome;
 	JTextArea ta;
 	JButton bAdd,bShow,bSearch,bDelete,bCancel,bExit;
-
-	// PersonVO 를 저장할 List 생성
-	ArrayList <PersonVO> list = new ArrayList<PersonVO>();
 
 
 
@@ -116,8 +112,8 @@ public class InfoView {
 	}
 
 
-
-
+	
+	
 	public void eventProc() {
 
 
@@ -125,56 +121,42 @@ public class InfoView {
 		bAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	// 이벤트 발생용 (해당 형태의 타이핑을 많이 이용할 것)
 				// 이벤트 확인 (메세지 창을 띄움)
-				JOptionPane.showMessageDialog(null, "정보 추가");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
-				inputData();	// 입력된 정보 저장
-				clearTextField();	// 새로이 값을 입력할 수 있도록 초기화
-				selectAll();
-			}//end of Action Performed	
-		});	// end of Add Action Listener
+				JOptionPane.showMessageDialog(null, "ADD 버튼 클릭");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
+			}	
+		});
 
 		//show 버튼이 눌렸을 때 이벤트 발생
 		bShow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	// 이벤트 발생용 (해당 형태의 타이핑을 많이 이용할 것)
 				// 이벤트 확인 (메세지 창을 띄움)
-				JOptionPane.showMessageDialog(null, "조회");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
-				selectAll();		// 저장된 list 를 보여주는 함수 호출
-			}	// end of Action Performed
-		});		// end of Action Listener
+				JOptionPane.showMessageDialog(null, "SHOW 버튼 클릭");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
+			}	
+		});
 
 		//search 버튼이 눌렸을 때 이벤트 발생
 		bSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	// 이벤트 발생용 (해당 형태의 타이핑을 많이 이용할 것)
 				// 이벤트 확인 (메세지 창을 띄움)
-				JOptionPane.showMessageDialog(null, "검색 성공");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
-				selectByTel();
-			}	// end of Action Performed
-		});		//end of Action Listener
+				JOptionPane.showMessageDialog(null, "SEARCH 버튼 클릭");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
+			}	
+		});
 
-		//tfTel 에서 엔터를 쳤을 때 selectByTel() 호출
-		tfTel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	// 이벤트 발생용 (해당 형태의 타이핑을 많이 이용할 것)
-				selectByTel();
-			}	// end of Action Performed
-		});		// end of Action Listener
-
-		//delete 버튼이 눌렸을 때 text Field 값을 제거
+		//delete 버튼이 눌렸을 때 이벤트 발생
 		bDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	// 이벤트 발생용 (해당 형태의 타이핑을 많이 이용할 것)
 				// 이벤트 확인 (메세지 창을 띄움)
-				JOptionPane.showMessageDialog(null, "정보 삭제");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
-				deleteByTel();
-//				clearTextField();	// 모든 필드 및 에어리어 초기화
-			}	// end of Action Performed
-		});		// end of Action Listener
+				JOptionPane.showMessageDialog(null, "DELETE 버튼 클릭");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
+			}	
+		});
 
 		//cancel 버튼이 눌렸을 때 clearTextField() 함수 호출
 		bCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	// 이벤트 발생용 (해당 형태의 타이핑을 많이 이용할 것)
 				// 이벤트 확인 (메세지 창을 띄움)
-				JOptionPane.showMessageDialog(null, "초기화");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
+				JOptionPane.showMessageDialog(null, "Cancel 버튼 클릭");	// 이벤트가 있다면 해당 메시지 박스를 띄워라
 				clearTextField();
-			}	// end of Action Performed
-		});		// end of Action Listener
+			}	
+		});
 
 		//exit 버튼이 눌렸을 때 이벤트 발생
 		bExit.addActionListener(new ActionListener() {
@@ -207,18 +189,15 @@ public class InfoView {
 
 			}	// end of foucsGained
 		});
-
 	}		// end of event proc
 
 	/*
-	 *	함수명 : clearTextField()
-	 * 	인자 : 없음
-	 * 	리턴값 : void
-	 * 	역할 : 각각의 텍스트 필드와 텍스트 에어리어의 입력된 값을 지우기
+	 *	clearTextField()
+	 * 	각각의 텍스트 필드와 텍스트 에어리어의 입력된 값을 지우기
 	 * 
 	 */
-
-	void clearTextField() {	// 입력된 모든 값을 null로 변경
+	
+	public void clearTextField() {	// 입력된 모든 값을 null로 변경
 		ta.setText(null);
 		tfName.setText(null);
 		tfID.setText(null);
@@ -226,127 +205,12 @@ public class InfoView {
 		tfSex.setText(null);
 		tfAge.setText(null);
 		tfHome.setText(null);
-
+		
 	}// end of clearTextField
-
-	/*
-	 *  함수명 : inputData ()
-	 *  인자 : 없음
-	 *  리턴값 : void
-	 *  역할 : 'ADD' 버튼을 눌렸을 때 사용자가 텍스트 필드에 입력한 값을 PersonVO() 에 저장
-	 */
-
-	void inputData () {
-		// 객체 생성
-		PersonVO vo = new PersonVO () {};
-		// (1) 각각 text field 에 입력된 값을 얻어오기
-		// (2) 1번의 값들을 PersonVO 멤버 변수에 저장 (setter/ constructor)
-		vo.setName(tfName.getText());
-		vo.setID(tfID.getText());
-		vo.setTel(tfTel.getText());
-		vo.setSex(tfSex.getText());
-		vo.setAge(Integer.parseInt(tfAge.getText()));
-		vo.setHome(tfHome.getText());
-		// 입력된 여러 데이터를 list 에 저장
-		list.add(vo);
-	} // end of inputData
-
-	/*
-	 * 	함수명 : selectAll()
-	 * 	인자 : 없음
-	 * 	리턴값 : void
-	 *  역할 : 리스트에 저장된 모든 정보를 textArea에 출력
-	 *  	
-	 */
-	void selectAll() {
-		ta.setText("====== 전체 목록 ====\n\n");	// 입력된 List 를 보여주기 전, TextArea 초기화 
-		for(PersonVO vo : list) {
-			ta.append(vo.toString());	//append 기존 입력 데이터 외 추가로 데이터 보여줌
-		}
-	}// end of SelectAll
-
-	/*
-	 *	함수명 : selectByTel
-	 *	인자 : 없음
-	 *	리턴값 : void
-	 * 	역할 : 입력한 전화번호를 토대로 정보를 찾아냄 
-	 * 
-	 */
-
-	void selectByTel () {
-		// 1단계 입력한 전화번호 값을 얻어오기
-		String tel = tfTel.getText();
-		// 2단계 전화번호 값이 있으면, 그 값과 관련된 정보를 호출
-		if (tel.equals("")) {	// 전화번호가 입력되어 있지 않을 경우
-			JOptionPane.showMessageDialog(null, "전화번호를 입력하세요");
-			return;
-		}//end of if
-		// list 에 저장된 PersonVO와 비교해 해당 전화번호가 있으면, 정보를 각각의 text field에 출력
-		for (PersonVO vo : list) {	// 리스트 와 비교
-			if(tel.equals(vo.getTel())) {	// 리스트 내 전화번호와 입력한 전화번호가 동일할 때
-				tfName.setText(vo.getName());
-				tfID.setText(vo.getID());
-				tfAge.setText(String.valueOf(vo.getAge()));
-				tfSex.setText(vo.getSex());
-				tfHome.setText(vo.getHome());
-			}	//end of if
-		}// end of for
-
-
-
-	}// end of selectByTel
-	/*
-	 * 	함수명 : deleteByTel
-	 *  인자 : 없음
-	 * 	리턴값 : void
-	 * 	역할 : 입력한 전화번호를 토대로 해당 정보를 지움
-	 * 
-	 */
-	void deleteByTel () {
-		// 입력한 전화번호 값을 얻어오기
-		// 입력받은 전화번호가 공백이라면 "전화번호를 입력하세요"라는 메세지 창을 출력
-		// 리스트에 저장된 PersonVO() 의 전화번호와 비교하여
-		// 해당 전화번호가 있으면, 그 해당하는 PersonVO를 리스트에서 삭제
-		// (참고) 삭제하고 나서 break로 반복문 끝내기
-		
-		//1단계 입력한 전화번호 값을 얻어오기
-		String tel = tfTel.getText();
-		
-		//2단계 전화번호 값이 있으면 그와 관련된 정보 list에서 제거
-		if (tel.equals("")) {	// 전화번호가 입력되어 있지 않을 경우
-			JOptionPane.showMessageDialog(null, "전화번호를 입력하세요");
-			return;
-		}//end of if
-		
-		// list 에 저장된 PersonVO와 비교해 해당 전화번호가 있으면, 정보를 list에서 제거
-		for (PersonVO vo : list) {	// 리스트 와 비교
-			if(tel.equals(vo.getTel())) {	// 리스트 내 전화번호와 입력한 전화번호가 동일할 때
-				list.remove(vo);		// 리스트에 저장된 vo를 제거
-				JOptionPane.showMessageDialog(null, "삭제 성공");
-				ta.setText("");
-				tfName.setText("");
-				tfID.setText("");
-				tfTel.setText("");
-				tfAge.setText("");
-				tfSex.setText("");
-				tfHome.setText("");
-				break;
-			}	//end of if
-		}// end of for
-		
-	}	// end of deleteByTel
 	
-
-	/*
-	 *	함수명 : getJuminInfo ()
-	 *	인자 : 없음
-	 *	리턴 : void
-	 *	역할 : 입력된 ID (주민번호) 를 통해 각종 정보를 획득하는 함수
-	 * 
-	 */
 	void getJuminInfo() {
-		String jumin = tfID.getText();	// tfID 상에 입력된 값을 저장해줄 변수 설정
-		if (jumin.length() != 14) {		// 주민번호가 15자가 되지 않을 때
+		String jumin = tfID.getText();
+		if (jumin.length() != 14) {
 			JOptionPane.showMessageDialog(null, "-를 포함한 15자를 맞춰주세요");
 			return;
 		}	// end of if
@@ -381,7 +245,7 @@ public class InfoView {
 			home = "경기";
 			tfHome.setText(home);
 			break;
-
+			
 		case '3' :
 			home = "강원";
 			tfHome.setText(home);
@@ -402,7 +266,7 @@ public class InfoView {
 		String nai = jumin.substring(0,2);		//nai = 주민등록 번호상 생년 2자리 취득;
 		// int sunai = (Int)nai;		// 캐스팅 변환 명령어 필요
 		int sunai = Integer.parseInt(nai);	// sunai = 앞서 취득한 생년을 문자열이 아닌 숫자로 취급;
-		int age = 0;						// 실제 나이를 계산하기 위한 변수 설정
+		int age = 0;
 
 		Calendar c = Calendar.getInstance(); // 객체가 이미 생성되어 있으므로, 가지고 와야 함. Calender 이용, getinstance 로 년, 월, 일 중 하나 취득
 		int year = c.get(Calendar.YEAR);		// year 라는 변수에 get 을 이용해 Calender에서 연도를 취득
@@ -410,6 +274,8 @@ public class InfoView {
 			age = year - (1900+sunai)+1;	// 1900년대 생으로 계산
 		} else if (sex =='3'| sex =='4') {	// 3,4에 해당할 경우
 			age = year - (2000+sunai)+1;	// 2000년대 생으로 계산
+			String age2 = String.valueOf(age);
+			tfAge.setText(age2);
 		} else if (sex == '9' | sex == '0') {	// 9,0 에 해당할 경우
 			age = year - (1800+sunai)+1;	// 1800년대 생으로 계산
 		} else {
@@ -422,9 +288,9 @@ public class InfoView {
 
 	public static void main(String[] args) {
 
-		InfoView info = new InfoView();		// 만들어낸 InfoView 클래스를 호출하기 위한 객체 생성
-		info.addLayout();					// InfoView 내 함수 호출 (레이아웃 형태 지정)
-		info.eventProc();					// InfoView 내 이벤트 함수 호출
+		InfoView info = new InfoView();
+		info.addLayout();
+		info.eventProc();
 
 	}
 
